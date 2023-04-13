@@ -23,7 +23,8 @@ const Home = () => {
   }, [])
 
   const resetField = () => {
-    
+    dispatch(filterProductsThunk(inputValue))
+    setInputValue('')
   }
 
   return (
@@ -68,14 +69,14 @@ const Home = () => {
               <Button
                 variant="outline-primary"
                 id="button-addon2"
-                onClick={() => dispatch(filterProductsThunk(inputValue))}
+                onClick={() => resetField()}
               >
                 Search
               </Button>
             </InputGroup>
           </Col>
         </Row>
-        <Row sm={1} md={2} lg={3} className="py-3">
+        <Row  xs={1} md={2} lg={3} className="py-3">
           {products.map((product) => (
             <Col className="mb-3" key={product.id}>
               <Card

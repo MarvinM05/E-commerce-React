@@ -1,7 +1,34 @@
-import {Button, Form} from "react-bootstrap";
-
+import { Button, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form"; 
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const { register, handleSubmit, reset } = useForm()
+
+  const navigate = useNavigate()
+
+  const submit = data => {
+
+    axios
+      .post("https://e-commerce-api-v2.academlo.tech/api/v1/users/login", data)
+      .then((resp) => {
+        localStorage.setItem('token', resp.data.token)
+        navigate('/')
+      })
+      .catch((error) => {
+        if (error.response?.status === 401) {
+          alert('Credenciales incorrectas')
+        } else {
+          console.error(error)
+        }
+      })
+        
+      .finally(reset({ email: "", password: "" }))
+      
+  }
+  
   return (
     <div
       style={{
@@ -22,11 +49,16 @@ const Login = () => {
         }}
         className="mb-3"
         controlid="formBasicEmail"
+        onSubmit={handleSubmit(submit)}
       >
         <h4>Welcome! Enter your email and password to continue</h4>
         <Form.Group className="mt-3">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            {...register("email")}
+          />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
@@ -34,12 +66,17 @@ const Login = () => {
 
         <Form.Group className="mb-3 mt-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            {...register("password")}
+          />
         </Form.Group>
         <Button className="w-100 mt-4" variant="primary" type="submit">
           Login
         </Button>
-        <div className="py-3">Don't have an account? 
+        <div className="py-3">
+          Don't have an account?
           <Button variant="secondary">Sign up</Button>
         </div>
       </Form>

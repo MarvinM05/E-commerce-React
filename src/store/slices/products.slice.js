@@ -19,7 +19,12 @@ export const getProductsThunk = () => dispatch => {
     .get("https://e-commerce-api-v2.academlo.tech/api/v1/products")
     .then((resp) => dispatch(setProducts(resp.data)))
     .catch((error) => console.error(error))
-    .finally(() => dispatch(setIsLoading(false)))  
+    .finally(() => {
+      setTimeout(() => {
+        dispatch(setIsLoading(false))
+      }, 1000)
+    }
+    )  
 }
 
 export const categoryFilterThunk = id => dispatch => {
@@ -41,7 +46,7 @@ export const filterProductsThunk = inputValue => dispatch => {
     )
     .then((resp) => dispatch(setProducts(resp.data)))
     .catch((error) => console.error(error))
-    .finally(dispatch(setIsLoading(false)));
+    .finally( () => dispatch(setIsLoading(false)))
 }
 
 export const { setProducts } = productsSlice.actions
