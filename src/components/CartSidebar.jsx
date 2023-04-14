@@ -29,15 +29,24 @@ function CartSidebar({ show, handleClose }) {
                 src={item.product?.images?.[2].url}
                 alt=""
               />
-              <div style={{marginLeft: "1rem"}}>
+              <div style={{ marginLeft: "1rem" }}>
                 <h5>{item.product.title}</h5>
-                <div style={{display: "flex", height:"25px", textAlign: "center"}}>
+                <div
+                  style={{
+                    display: "flex",
+                    height: "25px",
+                    textAlign: "center",
+                  }}
+                >
                   <Button
                     className="p-1 sm"
                     variant="outline-primary"
                     style={{
-                      width: "20px",
-                      border: "1px solid rgba(0, 0, 0, 0.175)", textAlign: "center", paddingBottom: "10px"
+                      width: "25px",
+                      border: "1px solid rgba(0, 0, 0, 0.175)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
                     -
@@ -47,7 +56,9 @@ function CartSidebar({ show, handleClose }) {
                       border: "1px solid rgba(0, 0, 0, 0.175)",
                       padding: "2px",
                       width: "50px",
-                      textAlign: "center"
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
                     {item.quantity}
@@ -55,8 +66,11 @@ function CartSidebar({ show, handleClose }) {
                   <Button
                     className="p-1 sm"
                     style={{
-                      width: "20px",
+                      width: "25px",
                       border: "1px solid rgba(0, 0, 0, 0.175)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                     variant="outline-primary"
                   >
