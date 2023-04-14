@@ -15,8 +15,21 @@ export const cartSlice = createSlice({
 export const getCartThunk = () => (dispatch) => {
   axios
     .get("https://e-commerce-api-v2.academlo.tech/api/v1/cart", getConfig())
-    .then((resp) => console.log(resp.data))
+    .then((resp) => dispatch(setCart(resp.data)))
     .catch((error) => console.error(error))
+}
+
+export const addProductThunk = data => dispatch => {
+
+  axios
+    .post(
+      "https://e-commerce-api-v2.academlo.tech/api/v1/cart",
+      data,
+      getConfig()
+    )
+    .then(() => dispatch(getCartThunk()))
+    .catch((error) => console.error(error))
+
 }
 
 export const { setCart } = cartSlice.actions

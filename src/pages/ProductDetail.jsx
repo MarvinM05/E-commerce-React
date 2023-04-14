@@ -1,12 +1,16 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {Button, Carousel} from "react-bootstrap";
+import { Button, Carousel, Col, Container, Row } from "react-bootstrap";
+import { addProductThunk } from "../store/slices/cart.slice";
+import { useDispatch } from "react-redux";
 
 const ProductDetail = () => {
 
   const { id } = useParams()
   const [detail, setDetail] = useState({})
+  const [counter, setCounter] = useState(1)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     axios
@@ -15,9 +19,35 @@ const ProductDetail = () => {
       .catch((error) => console.error(error))
   }, []);
 
+  const addProducts = () => {
+    const data = {
+      quantity: counter,
+      productId: id
+    }
+
+    dispatch(addProductThunk(data))
+  }
+
   return (
-    <div>
-      <Button className="mt-3" style={{border: "none"}} variant="outline-primary">Home</Button>
+    <Container>
+      <Row>
+        <h2>{detail.title}</h2>
+        <p>{detail.description}</p>
+      </Row>
+      <Row className="mb-3">
+        <p>Price: $ {detail.price}</p>
+        <Col>
+          <Button onClick={() => setCounter(counter - 1)}>-</Button>
+          {counter}
+          <Button onClick={() => setCounter(counter + 1)}>+</Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Button onClick={addProducts}>add product</Button>
+        </Col>
+      </Row>
+      {/* <Button className="mt-3" style={{border: "none"}} variant="outline-primary">Home</Button>
       <div className="w-50">
         <Carousel variant="dark">
           <Carousel.Item>
@@ -69,8 +99,8 @@ const ProductDetail = () => {
             />
           </Carousel.Item>
         </Carousel>
-      </div>
-    </div>
+      </div> */}
+    </Container>
   );
 };
 
