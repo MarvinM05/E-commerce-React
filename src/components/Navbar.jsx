@@ -8,6 +8,7 @@ import { useState } from "react";
 const NavBar = () => {
 
   const [sidebar, setSidebar] = useState(false)
+  
   const handleClose = () => {
     setSidebar(false)
   }

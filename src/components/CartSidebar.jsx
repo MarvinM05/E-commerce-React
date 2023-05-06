@@ -81,6 +81,7 @@ function CartSidebar({ show, handleClose }) {
             </ListGroup.Item>
           ))}
         </ListGroup>
+        <Button className="w-100">Checkout</Button>
       </Offcanvas.Body>
     </Offcanvas>
   );

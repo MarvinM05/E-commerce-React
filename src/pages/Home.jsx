@@ -33,9 +33,10 @@ const Home = () => {
         <Row className="py-3">
           {categories.map((category) => (
             <Col key={category.id}>
-              <Button style={{
-                border: "none"
-              }}
+              <Button
+                style={{
+                  border: "none",
+                }}
                 className="w-100"
                 variant="outline-primary"
                 onClick={() => dispatch(categoryFilterThunk(category.id))}
@@ -76,7 +77,7 @@ const Home = () => {
             </InputGroup>
           </Col>
         </Row>
-        <Row  xs={1} md={2} lg={3} className="py-3">
+        <Row xs={1} md={2} lg={3} className="py-3">
           {products.map((product) => (
             <Col className="mb-3" key={product.id}>
               <Card
@@ -91,11 +92,16 @@ const Home = () => {
                   }}
                 >
                   <Card.Img
-                    className="image"
+                    className="image-over"
+                    variant="top"
+                    src={product.images[1]?.url}
+
+                  />
+                  <Card.Img
                     variant="top"
                     src={product.images[0]?.url}
                     style={{
-                      display: "flex",
+                      display: "block",
                       height: "80%",
                       margin: "0 auto",
                       objectFit: "contain",

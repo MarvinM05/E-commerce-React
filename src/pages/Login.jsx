@@ -36,6 +36,7 @@ const Login = () => {
         display: "flex",
         height: "100vh",
         justifyContent: "center",
+        padding: "0 1.5rem 3rem 1.5rem"
       }}
     >
       <Form
