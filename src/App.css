@@ -132,8 +132,6 @@
   margin: 0 auto;
   object-Fit: contain;
   width: 80%;
-  height: 250px;
-  padding: 20px 10px;
   opacity: 0;
   transition: .8s;
   position: absolute;

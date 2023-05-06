@@ -88,26 +88,27 @@ const Home = () => {
               >
                 <div
                   style={{
+                    display: "flex",
                     borderBottom: "1px solid rgba(0, 0, 0, 0.175)",
+                    alignItems: "center",
+                    height: "250px",
+                    justifyContent: "center",
+                    position: "relative"
                   }}
                 >
                   <Card.Img
                     className="image-over"
-                    variant="top"
                     src={product.images[1]?.url}
 
                   />
                   <Card.Img
-                    variant="top"
                     src={product.images[0]?.url}
                     style={{
                       display: "block",
                       height: "80%",
                       margin: "0 auto",
                       objectFit: "contain",
-                      width: "80%",
-                      height: "250px",
-                      padding: "20px 10px",
+                      width: "80%"
                     }}
                   />
                 </div>
